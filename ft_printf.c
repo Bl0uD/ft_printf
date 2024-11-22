@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: ju <ju@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:37:26 by ju                #+#    #+#             */
-/*   Updated: 2024/11/21 23:21:06 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/11/22 12:07:54 by ju               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-size_t	ft_vdputchar(int fd, va_list list)
+size_t	ft_vdputchar(int fd, va_list *list)
 {
 	char	c;
 
-	c = va_arg(list, int);
+	c = va_arg(*list, int);
 	write(fd, &c, 1);
 
 	return (1);
 }
 
-size_t	ft_vdputstr(int fd, va_list list)
+size_t	ft_vdputstr(int fd, va_list *list)
 {
 	char	*str;
 
-	str = va_arg(list, char *);
+	str = va_arg(*list, char *);
 	ft_putstr_fd(str, fd);
 	return (ft_strlen(str));
 }
 
-size_t	ft_vdputnbr(int fd, va_list list)
+size_t	ft_vdputnbr(int fd, va_list *list)
 {
 	int	d;
 
-	d = va_arg(list, int);
+	d = va_arg(*list, int);
 	ft_putnbr_fd(d, fd);
 	return (3);
 }
@@ -45,7 +45,7 @@ size_t	ft_vdputnbr(int fd, va_list list)
 struct s_printf_flag
 {
 	char	flag;
-	size_t	(*f)(int fd, va_list list);
+	size_t	(*f)(int fd, va_list *list);
 };
 
 static struct s_printf_flag flags[] = {
@@ -78,7 +78,7 @@ int	ft_vdprintf(int fd, const char *format, va_list ap)
 		{
 			if (format[i] == flags[j].flag)
 			{
-				res = res + flags[j].f(fd, ap);
+				res = res + flags[j].f(fd, &ap);
 				break ;
 			}
 			j++;
@@ -96,6 +96,7 @@ int	ft_dprintf(int fd, const char *format, ...)
 	va_start(ap, format);
 	ft_vdprintf(fd, format, ap);
 	va_end(ap);
+	return (1);
 }
 
 int	ft_printf(const char *format, ...)
@@ -105,6 +106,7 @@ int	ft_printf(const char *format, ...)
 	va_start(ap, format);
 	ft_vdprintf(1, format, ap);
 	va_end(ap);
+	return (1);
 }
 
 int	main(void)
