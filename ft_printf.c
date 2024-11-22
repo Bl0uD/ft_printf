@@ -6,7 +6,7 @@
 /*   By: ju <ju@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:37:26 by ju                #+#    #+#             */
-/*   Updated: 2024/11/22 12:07:54 by ju               ###   ########.fr       */
+/*   Updated: 2024/11/22 18:37:59 by ju               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	ft_printf("dsc", 12, "Hello world", 'c');
+	ft_printf("dsc", 12, " Hello world! ", 'z');
 
 	return (0);
 }
