@@ -6,106 +6,92 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:37:26 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/11/26 20:58:37 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/11/26 23:47:59 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../LibFT/libft.h"
-#include <stdarg.h>
-#include <unistd.h>
+#include "printf.h"
 
-size_t	ft_vdputchar(int fd, va_list *list)
+static const struct s_printf_flags	g_flags[] = {
 {
-	char	c;
-
-	c = va_arg(*list, int);
-	write(fd, &c, 1);
-
-	return (1);
-}
-
-size_t	ft_vdputstr(int fd, va_list *list)
+	.flag = 'c',
+	.f = ft_vdputchar
+},
 {
-	char	*str;
-
-	str = va_arg(*list, char *);
-	ft_putstr_fd(str, fd);
-	return (ft_strlen(str));
-}
-
-size_t	ft_vdputnbr(int fd, va_list *list)
+	.flag = 's',
+	.f = ft_vdputstr
+},
 {
-	int	d;
-
-	d = va_arg(*list, int);
-	ft_putnbr_fd(d, fd);
-	return (3);
-}
-
-static struct	s_printf_flag flags[] = {
-	{
-		.flag = 'c',
-		.f = ft_vdputchar
-	},
-	{
-		.flag = 's',
-		.f = ft_vdputstr
-	},
-	{
-		.flag = 'p',
-		.f = ft_vdputnbr
-	},
-	{
-		.flag = 'd',
-		.f = ft_vdputnbr
-	},
-	{
-		.flag = 'i',
-		.f = ft_vdputnbr
-	},
-	{
-		.flag = 'u',
-		.f = ft_vdputnbr
-	},
-	{
-		.flag = 'x',
-		.f = ft_vdputnbr
-	},
-	{
-		.flag = 'X',
-		.f = ft_vdputnbr
-	},
-	{
-		.flag = '%',
-		.f = ft_vdputchar
-	}
+	.flag = 'p',
+	.f = ft_vdputnbr
+},
+{
+	.flag = 'd',
+	.f = ft_vdputnbr
+},
+{
+	.flag = 'i',
+	.f = ft_vdputnbr
+},
+{
+	.flag = 'u',
+	.f = ft_vdputnbr
+},
+{
+	.flag = 'x',
+	.f = ft_vdputnbr
+},
+{
+	.flag = 'X',
+	.f = ft_vdputnbr
+},
+{
+	.flag = '%',
+	.f = ft_vdputchar
+},
 };
+
+const struct s_printf_flags	*get_flag_from_char(char c)
+{
+	int	i;
+
+	i = 0;
+	while (i < (sizeof(g_flags) / sizeof(*g_flags)))
+	{
+		if (c == g_flags[i].flag)
+			return (&g_flags[i]);
+		i++;
+	}
+	return (NULL);
+}
 
 int	ft_vdprintf(int fd, const char *format, va_list ap)
 {
-	int	i;
-	int	j;
-	int	res;
+	int							i;
+	int							res;
+	const struct s_printf_flags	*p_flag;
+	va_list						cpy_ap;
 
 	i = 0;
 	res = 0;
+	va_copy(cpy_ap, ap);
 	while (format[i])
 	{
-		j = 0;
-		while (j < (sizeof(flags) / sizeof(*flags)))
+		if (format[i] == '%')
 		{
-			if (format[i] == '%' && format[i + 1] == flags[j].flag)
+			if (format[i + 1] == '%')
+				write(fd, &format[i + 1], 1);
+			else
 			{
-				res = res + flags[j].f(fd, &ap);
-				i += ft_strlen(&flags[j].flag) + 1;
-				break ;
+				p_flag = get_flag_from_char(format[i + 1]);
+				res = res + p_flag->f(fd, &cpy_ap);
 			}
-			j++;
+			i += 2;
 		}
 		write(fd, &format[i], 1);
 		i++;
 	}
-	return (res);
+	return (va_end(cpy_ap), res);
 }
 
 int	ft_dprintf(int fd, const char *format, ...)

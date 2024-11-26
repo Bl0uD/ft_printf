@@ -6,11 +6,11 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:35:26 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/11/21 23:18:41 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/11/26 21:21:43 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
 void	ft_putstr_fd(char const *s, int fd)
 {
