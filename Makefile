@@ -3,6 +3,7 @@ NAME = printf.a
 SRC = ft_putchar_fd.c \
 			ft_putnbr_fd.c \
 			ft_putstr_fd.c \
+			ft_strlen.c \
 			ft_vdputchar.c \
 			ft_vdputnbr.c \
 			ft_vdputstr.c \
