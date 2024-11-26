@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ju <ju@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 20:37:26 by ju                #+#    #+#             */
-/*   Updated: 2024/11/22 18:37:59 by ju               ###   ########.fr       */
+/*   Created: 2024/11/20 20:37:26 by jdupuis           #+#    #+#             */
+/*   Updated: 2024/11/26 20:58:37 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,7 @@ size_t	ft_vdputnbr(int fd, va_list *list)
 	return (3);
 }
 
-struct s_printf_flag
-{
-	char	flag;
-	size_t	(*f)(int fd, va_list *list);
-};
-
-static struct s_printf_flag flags[] = {
+static struct	s_printf_flag flags[] = {
 	{
 		.flag = 'c',
 		.f = ft_vdputchar
@@ -58,8 +52,32 @@ static struct s_printf_flag flags[] = {
 		.f = ft_vdputstr
 	},
 	{
+		.flag = 'p',
+		.f = ft_vdputnbr
+	},
+	{
 		.flag = 'd',
 		.f = ft_vdputnbr
+	},
+	{
+		.flag = 'i',
+		.f = ft_vdputnbr
+	},
+	{
+		.flag = 'u',
+		.f = ft_vdputnbr
+	},
+	{
+		.flag = 'x',
+		.f = ft_vdputnbr
+	},
+	{
+		.flag = 'X',
+		.f = ft_vdputnbr
+	},
+	{
+		.flag = '%',
+		.f = ft_vdputchar
 	}
 };
 
@@ -76,13 +94,15 @@ int	ft_vdprintf(int fd, const char *format, va_list ap)
 		j = 0;
 		while (j < (sizeof(flags) / sizeof(*flags)))
 		{
-			if (format[i] == flags[j].flag)
+			if (format[i] == '%' && format[i + 1] == flags[j].flag)
 			{
 				res = res + flags[j].f(fd, &ap);
+				i += ft_strlen(&flags[j].flag) + 1;
 				break ;
 			}
 			j++;
 		}
+		write(fd, &format[i], 1);
 		i++;
 	}
 	return (res);
@@ -111,7 +131,7 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	ft_printf("dsc", 12, " Hello world! ", 'z');
-
+	ft_printf("Coucou %%, %d, %s, %c, au revoir !\n", 4, "Hello world!", 'z');
+	printf("Coucou %%, %d, %s, %c, au revoir !\n", 4, "Hello world!", 'z');
 	return (0);
 }
