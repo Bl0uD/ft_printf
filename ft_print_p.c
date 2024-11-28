@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vdputchar.c                                     :+:      :+:    :+:   */
+/*   ft_print_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 21:19:42 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/11/26 23:34:30 by jdupuis          ###   ########.fr       */
+/*   Created: 2024/11/27 19:52:12 by jdupuis           #+#    #+#             */
+/*   Updated: 2024/11/28 16:05:47 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-size_t	ft_vdputchar(int fd, va_list *list)
+size_t	ft_print_p(int fd, va_list *list)
 {
-	char	c;
+	int		len;
+	char	*s;
 
-	c = va_arg(*list, int);
-	if (c == '%')
-		write(fd, &c, 1);
-	else
-		write(fd, &c, 1);
-	return (1);
+	len = 0;
+//	s = convertbase();
+	
+	return (len);
 }

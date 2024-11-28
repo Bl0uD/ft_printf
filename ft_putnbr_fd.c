@@ -6,11 +6,11 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:35:11 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/11/26 21:21:46 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/11/27 19:25:26 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

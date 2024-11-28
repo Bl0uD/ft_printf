@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vdputstr.c                                      :+:      :+:    :+:   */
+/*   ft_print_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 21:19:58 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/11/26 21:21:14 by jdupuis          ###   ########.fr       */
+/*   Created: 2024/11/26 21:19:42 by jdupuis           #+#    #+#             */
+/*   Updated: 2024/11/27 19:46:51 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-size_t	ft_vdputstr(int fd, va_list *list)
+size_t	ft_print_c(int fd, va_list *list)
 {
-	char	*str;
+	char	c;
 
-	str = va_arg(*list, char *);
-	ft_putstr_fd(str, fd);
-	return (ft_strlen(str));
+	c = va_arg(*list, int);
+	write(fd, &c, 1);
+	return (1);
 }

@@ -8,8 +8,8 @@ SRC = ft_putchar_fd.c \
 			ft_vdputnbr.c \
 			ft_vdputstr.c \
 
-OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(SRC:.c=.o)
+OBJ_DIR = objects
+OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 FLAGS = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re 
@@ -17,15 +17,18 @@ FLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 	@true
 
-$(NAME) :
-	gcc -I $(FLAGS) -c $(SRC)
+$(NAME) : $(OBJ_DIR)
 	ar rcs $(NAME) $(OBJ)
 
-clean : fclean
-	rm -f $(NAME)
+$(OBJ_DIR)/%.o : %.c
+	@mkdir -p $(OBJ_DIR)
+	gcc $(FLAGS) -c $< -o $@
+
+clean : 
+	rm -rf $(OBJ_DIR)
 
 fclean : clean
-	rm -rf $(OBJ)
+	rm -f $(NAME)
 
 re : fclean all
 

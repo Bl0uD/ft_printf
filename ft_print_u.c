@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vdputnbr.c                                      :+:      :+:    :+:   */
+/*   ft_print_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 21:20:13 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/11/26 21:20:58 by jdupuis          ###   ########.fr       */
+/*   Created: 2024/11/28 13:57:09 by jdupuis           #+#    #+#             */
+/*   Updated: 2024/11/28 13:58:20 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-size_t	ft_vdputnbr(int fd, va_list *list)
+size_t	ft_print_u(int fd, va_list *list)
 {
-	int	d;
-
-	d = va_arg(*list, int);
-	ft_putnbr_fd(d, fd);
-	return (3);
+	
 }
