@@ -4,12 +4,13 @@ SRC = ft_putchar_fd.c \
 			ft_putnbr_fd.c \
 			ft_putstr_fd.c \
 			ft_strlen.c \
-			ft_vdputchar.c \
-			ft_vdputnbr.c \
-			ft_vdputstr.c \
+			ft_print_c.c \
+			ft_print_d.c \
+			ft_print_s.c \
+#			ft_print_p.c \
+#			ft_print_u.c \
 
-OBJ_DIR = objects
-OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
+OBJ = $(SRC:.c=.o)
 FLAGS = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re 
@@ -17,15 +18,12 @@ FLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 	@true
 
-$(NAME) : $(OBJ_DIR)
+$(NAME) : 
+	gcc $(FLAGS) -c $(SRC)
 	ar rcs $(NAME) $(OBJ)
 
-$(OBJ_DIR)/%.o : %.c
-	@mkdir -p $(OBJ_DIR)
-	gcc $(FLAGS) -c $< -o $@
-
 clean : 
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ)
 
 fclean : clean
 	rm -f $(NAME)
@@ -33,4 +31,4 @@ fclean : clean
 re : fclean all
 
 dev :
-	make fclean;git add .; git commit -m 'auto update';git push;cd ../test;make;make f;cd ../libft;make fclean
+	make fclean;git add .; git commit -m 'auto update';git push
