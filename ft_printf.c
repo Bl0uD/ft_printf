@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:37:26 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/11/28 14:02:27 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/01 16:12:44 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ static const struct s_printf_flags	g_flags[] = {
 },
 {
 	.flag = 'x',
-	.f = ft_print_d
+	.f = ft_print_x
 },
 {
 	.flag = 'X',
-	.f = ft_print_d
+	.f = ft_print_X
 },
 };
 
@@ -64,7 +64,7 @@ const struct s_printf_flags	*get_flag_from_char(char c)
 int	ft_vdprintf(int fd, const char *format, va_list ap)
 {
 	int							i;
-	int							len;
+	size_t						len;
 	const struct s_printf_flags	*p_flag;
 	va_list						cpy_ap;
 
@@ -76,45 +76,44 @@ int	ft_vdprintf(int fd, const char *format, va_list ap)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == '%')
-				write(fd, &format[i + 1], 1);
+				ft_putchar_fd((char)format[i + 1], fd);
 			else
 			{
+//				printf("\nlen before %zu\n", len);
 				p_flag = get_flag_from_char(format[i + 1]);
-				len = len + p_flag->f(fd, &cpy_ap);
+				len += (size_t)p_flag->f(fd, &cpy_ap);
+//				printf("\nreturn func : %zu\n", p_flag->f(fd, &cpy_ap));
+//				printf("\nlen after %zu\n", len);
 			}
 			i += 2;
 		}
-		write(fd, &format[i], 1);
+		len += ft_putchar_fd((char)format[i], fd);
 		i++;
 	}
+	// printf("%zu\n", len);
 	return (va_end(cpy_ap), len);
 }
 
-// int	ft_dprintf(int fd, const char *format, ...)
-// {
-// 	va_list	ap;
-// 	int		i;
-
-// 	va_start(ap, format);
-// 	ft_vdprintf(fd, format, ap);
-// 	va_end(ap);
-// 	return (1);
-// }
-
 int	ft_printf(const char *format, ...)
 {
+	int		len;
 	va_list	ap;
 
 	va_start(ap, format);
-	ft_vdprintf(1, format, ap);
+	len = ft_vdprintf(1, format, ap);
 	va_end(ap);
-	return (1);
+	return (len);
 }
 
 int	main(void)
 {
 	char	*str = "Hello world!";
-	ft_printf("Coucou %%, %d, %s, %c, au revoir !\n", 44, str, 'z');
-	printf("Pourcent: %%, nombre d: %d, chiffre i: %i, string: %s, adresse : %p, caractère: %c, au revoir !\n", 44, 5, str, str, 'z');
+	unsigned int	Unb = -42;
+
+	ft_printf("Pourcent: %%\n");
+	// ft_printf("Pourcent: %%, nombre d: %d, chiffre i: %i, unsigned u: %u, string: %s, adresse : %p, caractere: %c, %%x:", 44, 5, Unb, str, &str, 'z', 42, 42);
+	// ft_printf("Pourcent: %%, nombre d: %d, chiffre i: %i, unsigned u: %u, string: %s, adresse : %p, caractere: %c, %%x: %x, %%X: %X, au revoir !\n", 44, 5, Unb, str, &str, 'z', 42, 42);
+	// printf("Pourcent: %%");
+	// printf("Pourcent: %%, nombre d: %d, chiffre i: %i, unsigned u: %u, string: %s, adresse : %p, caractere: %c, %%x: %x, %%X: %X, au revoir !\n", 44, 5, Unb, str, &str, 'z', 42, 42);
 	return (0);
 }
