@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:37:26 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/12/02 21:58:33 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/02 22:21:43 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,16 @@ int	main(void)
 	char	*str = "Hello world!";
 	unsigned int	Unb = -42;
 
-	ft_printf("Pourcent: %%, nombre d: %d, chiffre i: %i, unsigned u: %u, string: %s, adresse : %p, caractere: %c, %%x: %x, %%X: %X, au revoir !\n", 44, 5, Unb, str, &str, 'z', 42, 42);
-	printf("Pourcent: %%, nombre d: %d, chiffre i: %i, unsigned u: %u, string: %s, adresse : %p, caractere: %c, %%x: %x, %%X: %X, au revoir !\n", 44, 5, Unb, str, &str, 'z', 42, 42);
+	ft_printf("Pourcent: %%, nombre d: 
+	%d, chiffre i: %i, unsigned u: %u, 
+	string: %s, adresse : %p, caractere: 
+	%c, %%x: %x, %%X: %X, au revoir !\n", 
+	44, 5, Unb, str, &str, 'z', 42, 42);
+	printf("Pourcent: %%, nombre d: %d, 
+	chiffre i: %i, unsigned u: %u, string: 
+	%s, adresse : %p, caractere: %c, %%x: 
+	%x, %%X: %X, au revoir !\n", 44, 5, 
+	Unb, str, &str, 'z', 42, 42);
 	return (0);
 }
 */
