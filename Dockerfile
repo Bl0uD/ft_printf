@@ -18,7 +18,7 @@ COPY . /workspace
 WORKDIR /workspace
 
 # Compiler ton programme avec gcc (en activant les informations de débogage avec -g)
-RUN gcc -g -o mon_programme ft_printf.c ft_putnbr_fd.c ft_putstr_fd.c ft_strlen.c ft_print_c.c ft_print_d.c ft_print_p.c ft_print_u.c ft_print_s.c ft_putchar_fd.c
+RUN gcc -g -o mon_programme ft_printf.c ft_putnbr_fd.c ft_putstr_fd.c ft_strlen.c ft_print_c.c ft_print_d.c ft_print_p.c ft_print_u.c ft_print_s.c ft_putchar_fd.c ft_print_xX.c
 
 # Lancer Zsh par défaut (facultatif, mais pour avoir un shell interactif)
 CMD ["zsh"]
