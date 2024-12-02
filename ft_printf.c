@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:37:26 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/12/01 16:12:44 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/02 20:09:58 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ static const struct s_printf_flags	g_flags[] = {
 },
 {
 	.flag = 'X',
-	.f = ft_print_X
+	.f = ft_print_big_x
 },
 };
 
 const struct s_printf_flags	*get_flag_from_char(char c)
 {
-	int	i;
+	long unsigned	i;
 
 	i = 0;
 	while (i < (sizeof(g_flags) / sizeof(*g_flags)))
@@ -73,24 +73,20 @@ int	ft_vdprintf(int fd, const char *format, va_list ap)
 	va_copy(cpy_ap, ap);
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1])
 		{
 			if (format[i + 1] == '%')
-				ft_putchar_fd((char)format[i + 1], fd);
+				len += ft_putchar_fd(format[i + 1], fd);
 			else
 			{
-//				printf("\nlen before %zu\n", len);
 				p_flag = get_flag_from_char(format[i + 1]);
 				len += (size_t)p_flag->f(fd, &cpy_ap);
-//				printf("\nreturn func : %zu\n", p_flag->f(fd, &cpy_ap));
-//				printf("\nlen after %zu\n", len);
 			}
 			i += 2;
 		}
-		len += ft_putchar_fd((char)format[i], fd);
-		i++;
+		else
+			len += ft_putchar_fd(format[i++], fd);
 	}
-	// printf("%zu\n", len);
 	return (va_end(cpy_ap), len);
 }
 
@@ -104,16 +100,20 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (len);
 }
-
+/*
 int	main(void)
 {
 	char	*str = "Hello world!";
 	unsigned int	Unb = -42;
 
-	ft_printf("Pourcent: %%\n");
-	// ft_printf("Pourcent: %%, nombre d: %d, chiffre i: %i, unsigned u: %u, string: %s, adresse : %p, caractere: %c, %%x:", 44, 5, Unb, str, &str, 'z', 42, 42);
-	// ft_printf("Pourcent: %%, nombre d: %d, chiffre i: %i, unsigned u: %u, string: %s, adresse : %p, caractere: %c, %%x: %x, %%X: %X, au revoir !\n", 44, 5, Unb, str, &str, 'z', 42, 42);
-	// printf("Pourcent: %%");
-	// printf("Pourcent: %%, nombre d: %d, chiffre i: %i, unsigned u: %u, string: %s, adresse : %p, caractere: %c, %%x: %x, %%X: %X, au revoir !\n", 44, 5, Unb, str, &str, 'z', 42, 42);
+	ft_printf("Pourcent: %%, nombre d: %d, chiffre i: %i, 
+	unsigned u: %u, string: %s, adresse : %p, caractere: 
+	%c, %%x: %x, %%X: %X, au revoir !\n", 44, 5, Unb, str, 
+	&str, 'z', 42, 42);
+	printf("Pourcent: %%, nombre d: %d, chiffre i: %i, 
+	unsigned u: %u, string: %s, adresse : %p, caractere: 
+	%c, %%x: %x, %%X: %X, au revoir !\n", 44, 5, Unb, str, 
+	&str, 'z', 42, 42);
 	return (0);
 }
+*/

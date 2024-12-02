@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 14:05:39 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/12/01 15:01:48 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/02 20:02:34 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ size_t	ft_print_x(int fd, va_list *list)
 	}
 	ft_putstr_fd(s, fd);
 	len += ft_strlen(s);
-	printf("\ns: %s\n", s);
-	printf("\nlen: %d\n", len);
 	free(s);
 	return (len);
 }
 
-size_t	ft_print_X(int fd, va_list *list)
+size_t	ft_print_big_x(int fd, va_list *list)
 {
 	int		len;
 	char	*s;

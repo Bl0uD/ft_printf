@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:20 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/12/01 14:21:16 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/02 20:02:34 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 typedef struct s_printf_flags
 {
 	char	flag;
-	size_t	(*f)(int fd, va_list *list);
+	size_t	(*f)(int fd, va_list * list);
 }							t_struct;
 
 char	*ft_itoa_hexa_base(long nbr);
@@ -36,7 +36,7 @@ size_t	ft_print_p(int fd, va_list *list);
 size_t	ft_print_s(int fd, va_list *list);
 size_t	ft_print_u(int fd, va_list *list);
 size_t	ft_print_x(int fd, va_list *list);
-size_t	ft_print_X(int fd, va_list *list);
+size_t	ft_print_big_x(int fd, va_list *list);
 size_t	ft_strlen(const char *str);
 
 #endif
