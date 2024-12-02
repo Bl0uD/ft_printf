@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:52:12 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/11/29 16:26:55 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/02 22:00:46 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_itoa_hexa_base(long nbr)
 	int			j;
 	int			signe;
 	char		*res;
-	const char	*base = "0123456789ABCDEF";
+	const char	*base = "0123456789abcdef";
 
 	i = 0;
 	signe = 0;
