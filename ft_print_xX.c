@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 14:05:39 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/12/02 22:02:08 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/02 22:55:40 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	ft_print_x(int fd, va_list *list)
 	char	*s;
 
 	len = 0;
-	s = ft_itoa_hexa_base(va_arg(*list, long));
+	s = ft_u_itoa_hexa_base(va_arg(*list, long));
 	ft_putstr_fd(s, fd);
 	len += ft_strlen(s);
 	free(s);
@@ -41,7 +41,7 @@ size_t	ft_print_big_x(int fd, va_list *list)
 
 	len = 0;
 	i = 0;
-	s = ft_itoa_hexa_base(va_arg(*list, long));
+	s = ft_u_itoa_hexa_base(va_arg(*list, long));
 	while (s[i])
 	{
 		s[i] = ft_toupper(s[i]);
