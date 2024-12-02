@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:37:26 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/12/02 23:06:19 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/03 00:00:14 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,29 +103,33 @@ int	ft_printf(const char *format, ...)
 /*
 int	main(void)
 {
+	int		rft_printf = 0;
+	int		rprintf = 0;
 	char	*str = "Hello world!";
 	unsigned int	Unb = -42;
 
-	ft_printf("Pourcent: %% -> ft_printf\n");
-	printf("Pourcent: %% -> ft_printf\n");
-	ft_printf("nombre d: %d -> ft_printf\n", 44);
-	printf("nombre d: %d -> ft_printf\n", 44);
-	ft_printf("chiffre i: %i -> ft_printf\n", 5);
-	printf("chiffre i: %i -> ft_printf\n", 5);
-	ft_printf("unsigned u: %u -> ft_printf\n", Unb);
-	printf("unsigned u: %u -> ft_printf\n", Unb);
-	ft_printf("string: %s -> ft_printf\n", str);
-	printf("string: %s -> ft_printf\n", str);
-	ft_printf("adresse : %p -> ft_printf\n", (void *)-14523);
-	printf("adresse : %p -> ft_printf\n", (void *)-14523);
-	ft_printf("caractere: %c -> ft_printf\n", 'z');
-	printf("caractere: %c -> ft_printf\n", 'z');
-	ft_printf("%%x: %x -> ft_printf\n", 42);
-	printf("%%x: %x -> ft_printf\n", 42);
-	ft_printf("%%X: %X -> ft_printf\n", 42);
-	printf("%%X: %X -> ft_printf\n", 42);
-	ft_printf("au revoir ! -> ft_printf\n");
-	printf("au revoir ! -> ft_printf\n");
+	// ft_printf("Pourcent: %% -> ft_printf\n");
+	// printf("Pourcent: %% -> ft_printf\n");
+	// rft_printf += ft_printf("nombre d: %d -> ft_printf\n", INT_MIN);
+	// rprintf += printf("nombre d: %d -> ft_printf\n", INT_MIN);
+	// ft_printf("chiffre i: %i -> ft_printf\n", 5);
+	// printf("chiffre i: %i -> ft_printf\n", 5);
+	// ft_printf("unsigned u: %u -> ft_printf\n", Unb);
+	// printf("unsigned u: %u -> ft_printf\n", Unb);
+	// ft_printf("string: %s -> ft_printf\n", str);
+	// printf("string: %s -> ft_printf\n", str);
+	// ft_printf("adresse : %p -> ft_printf\n", (void *)-14523);
+	// printf("adresse : %p -> ft_printf\n", (void *)-14523);
+	// ft_printf("caractere: %c -> ft_printf\n", 'z');
+	// printf("caractere: %c -> ft_printf\n", 'z');
+	// rft_printf += ft_printf("%%x: %x -> ft_printf\n", -10);
+	// rprintf += printf("%%x: %x -> ft_printf\n", -10);
+	// ft_printf("%%X: %X -> ft_printf\n", 42);
+	// printf("%%X: %X -> ft_printf\n", 42);
+	// ft_printf("au revoir ! -> ft_printf\n");
+	// printf("au revoir ! -> ft_printf\n");
+
+	printf("\nreturn ft_printf: %d vs return printf: %d", rft_printf, rprintf);
 	return (0);
 }
 */

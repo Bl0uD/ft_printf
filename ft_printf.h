@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:55:20 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/12/02 22:54:59 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/03 00:04:25 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_printf_flags
 {
@@ -23,7 +24,8 @@ typedef struct s_printf_flags
 	size_t	(*f)(int fd, va_list * list);
 }							t_struct;
 
-char	*ft_u_itoa_hexa_base(unsigned long nbr);
+char	*ft_u_itoa_hexa_base(unsigned int nbr);
+char	*ft_u_ltoa_hexa_base(unsigned long nbr);
 int		ft_printf(const char *format, ...);
 int		ft_putchar_fd(char c, int fd);
 int		ft_toupper(int c);
