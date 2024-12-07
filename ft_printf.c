@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:37:26 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/12/03 00:34:30 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/06 22:46:09 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (len);
 }
-
+/*
 int	main(void)
 {
 	int		rft_printf = 0;
@@ -132,3 +132,4 @@ int	main(void)
 	printf("\nreturn ft_printf: %d vs return printf: %d", rft_printf, rprintf);
 	return (0);
 }
+*/
