@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:52:12 by jdupuis           #+#    #+#             */
-/*   Updated: 2024/12/03 00:02:11 by jdupuis          ###   ########.fr       */
+/*   Updated: 2024/12/21 15:04:18 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,18 @@ char	*ft_u_ltoa_hexa_base(unsigned long nbr)
 
 size_t	ft_print_p(int fd, va_list *list)
 {
-	int		len;
+	size_t	len;
+	long	nb;
 	char	*s;
 
 	len = 0;
-	s = ft_u_ltoa_hexa_base(va_arg(*list, long));
+	nb = va_arg(*list, long);
+	if (nb == 0)
+	{
+		write(fd, "(nil)", 5);
+		return (5);
+	}
+	s = ft_u_ltoa_hexa_base(nb);
 	if (s && ft_strlen(s) > 0)
 	{
 		ft_putstr_fd("0x", fd);
